@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import ru.fmt.university.UniversityApp;
 import ru.fmt.university.dto.*;
 
 import javax.sql.DataSource;
@@ -22,7 +23,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = {TestAppConfig.class})
+@ContextConfiguration(classes = {UniversityApp.class})
 public abstract class RepositoryTest {
     protected static final List<Course> testCourseList = new LinkedList<>();
     protected static final List<Group> testGroupList = new LinkedList<>();

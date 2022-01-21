@@ -56,7 +56,7 @@ public class TeacherController {
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
-    @GetMapping("/lessons/{lessonId}")
+    @GetMapping("/teachers/{lessonId}")
     public ResponseEntity<Teacher> getTeacherByLesson(@PathVariable(name = "lessonId") int lessonId) {
         final Teacher teacher = teacherService.getByLesson(lessonId);
 
@@ -65,7 +65,7 @@ public class TeacherController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/lessons/{courseId}")
+    @GetMapping("/teachers/{courseId}")
     public ResponseEntity<List<Teacher>> getTeachersByCourse(@PathVariable(name = "courseId") int courseId) {
         final List<Teacher> teachers = teacherService.getByCourse(courseId);
 
@@ -74,7 +74,7 @@ public class TeacherController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/lessons/{teacherId}")
+    @GetMapping("/teachers/{teacherId}")
     public ResponseEntity<List<Lesson>> getTeacherSchedule(@PathVariable(name = "teacherId") int teacherId) {
         final List<Lesson> lessons = teacherService.getSchedule(teacherId);
 

@@ -7,6 +7,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import ru.fmt.university.UniversityApp;
 import ru.fmt.university.dao.*;
 import ru.fmt.university.dto.*;
 
@@ -18,7 +19,7 @@ import static java.util.Collections.singletonList;
 
 @ExtendWith(SpringExtension.class)
 @ExtendWith(MockitoExtension.class)
-@ContextConfiguration(classes = {ServiceTestConfig.class})
+@ContextConfiguration(classes = {UniversityApp.class})
 public abstract class ServiceTest {
 
     protected static Course expectedCourse = new Course(1, "Test", "Course");
