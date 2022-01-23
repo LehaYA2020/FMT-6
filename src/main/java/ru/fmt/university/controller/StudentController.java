@@ -5,14 +5,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.fmt.university.dto.Student;
-import ru.fmt.university.service.implementation.StudentService;
+import ru.fmt.university.service.IStudentService;
 
 import java.util.List;
 
 @RestController
 public class StudentController {
     @Autowired
-    private StudentService studentService;
+    private IStudentService studentService;
 
     @PostMapping(value = "/students")
     public ResponseEntity<?> create(@RequestBody Student student) {
@@ -26,7 +26,7 @@ public class StudentController {
 
         return students.isEmpty()
                 ? new ResponseEntity<>(HttpStatus.NOT_FOUND)
-                :  new ResponseEntity<>(students, HttpStatus.OK);
+                : new ResponseEntity<>(students, HttpStatus.OK);
     }
 
     @GetMapping("/students/{id}")

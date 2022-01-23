@@ -10,7 +10,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TeacherRepositoryTest extends RepositoryTest {
     private static final Teacher FOR_CREATION = new Teacher(4, "T-4", "Teacher", testCourseList.get(1).getId());
 
-
     @Test
     public void create() {
         teacherRepository.create(FOR_CREATION);

@@ -5,14 +5,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.fmt.university.dto.Lesson;
-import ru.fmt.university.service.implementation.LessonService;
+import ru.fmt.university.service.ILessonService;
 
 import java.util.List;
 
 @RestController
 public class LessonController {
     @Autowired
-    private LessonService lessonService;
+    private ILessonService lessonService;
 
     @PostMapping(value = "/lessons")
     public ResponseEntity<?> create(@RequestBody Lesson lesson) {
@@ -26,7 +26,7 @@ public class LessonController {
 
         return lessons.isEmpty()
                 ? new ResponseEntity<>(HttpStatus.NOT_FOUND)
-                :  new ResponseEntity<>(lessons, HttpStatus.OK);
+                : new ResponseEntity<>(lessons, HttpStatus.OK);
     }
 
     @GetMapping("/lessons/{id}")

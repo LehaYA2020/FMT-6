@@ -5,14 +5,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.fmt.university.dto.Group;
-import ru.fmt.university.service.implementation.GroupService;
+import ru.fmt.university.service.IGroupService;
 
 import java.util.List;
 
 @RestController
 public class GroupController {
     @Autowired
-    private GroupService groupService;
+    private IGroupService groupService;
 
     @PostMapping(value = "/groups")
     public ResponseEntity<?> create(@RequestBody Group group) {

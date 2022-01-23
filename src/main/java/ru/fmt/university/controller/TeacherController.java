@@ -6,14 +6,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.fmt.university.dto.Lesson;
 import ru.fmt.university.dto.Teacher;
-import ru.fmt.university.service.implementation.TeacherService;
+import ru.fmt.university.service.ITeacherService;
 
 import java.util.List;
 
 @RestController
 public class TeacherController {
     @Autowired
-    private TeacherService teacherService;
+    private ITeacherService teacherService;
 
     @PostMapping(value = "/teachers")
     public ResponseEntity<?> create(@RequestBody Teacher teacher) {
@@ -27,7 +27,7 @@ public class TeacherController {
 
         return teachers.isEmpty()
                 ? new ResponseEntity<>(HttpStatus.NOT_FOUND)
-                :  new ResponseEntity<>(teachers, HttpStatus.OK);
+                : new ResponseEntity<>(teachers, HttpStatus.OK);
     }
 
     @GetMapping("/teachers/{id}")

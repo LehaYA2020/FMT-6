@@ -1,8 +1,10 @@
 package ru.fmt.university.service;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import ru.fmt.university.dto.Lesson;
 import ru.fmt.university.dto.Student;
+import ru.fmt.university.service.implementation.LessonService;
 
 import java.util.List;
 
@@ -11,6 +13,8 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class StudentServiceTest extends ServiceTest{
+    @MockBean
+    protected LessonService lessonServiceMock;
 
     @Test
     public void create_shouldCallStudentRepositoryCreatedMethod() {

@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 public class StudentRepositoryTest extends RepositoryTest {
-    private static final Student FOR_CREATION = new Student(5, "S-05", "Student",1);
+    private static final Student FOR_CREATION = new Student(5, "S-05", "Student", 1);
 
     @Test
     public void create() {
@@ -55,7 +55,7 @@ public class StudentRepositoryTest extends RepositoryTest {
 
     @Test
     public void update_shouldUpdateStudent() {
-        Student forUpdate = new Student(1, "S-01", "UPDATED",1);
+        Student forUpdate = new Student(1, "S-01", "UPDATED", 1);
         studentRepository.update(forUpdate);
         assertEquals(forUpdate, studentRepository.getById(1));
     }
@@ -72,7 +72,7 @@ public class StudentRepositoryTest extends RepositoryTest {
     public void updateGroupAssignment_shouldUpdateGroupAssignment() {
         studentRepository.updateGroupAssignment(testStudentList.get(1).getId(), testGroupList.get(1).getId());
         testStudentList.get(1).setGroupId(2);
-        assertEquals(testStudentList.subList(1,2).get(0).getGroupId(), studentRepository.getByGroupId(2).get(0).getGroupId());
+        assertEquals(testStudentList.subList(1, 2).get(0).getGroupId(), studentRepository.getByGroupId(2).get(0).getGroupId());
         testStudentList.get(1).setGroupId(1);
     }
 
