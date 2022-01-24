@@ -1,6 +1,5 @@
 package ru.fmt.university.dao;
 
-import config.TestConfig;
 import org.apache.ibatis.jdbc.ScriptRunner;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -9,7 +8,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
-import org.springframework.test.context.ContextConfiguration;
 import ru.fmt.university.dto.*;
 
 import javax.sql.DataSource;
@@ -21,7 +19,6 @@ import java.time.LocalTime;
 import java.util.LinkedList;
 import java.util.List;
 
-@ContextConfiguration(classes = {TestConfig.class})
 @SpringBootTest
 public abstract class RepositoryTest {
     protected static final List<Course> testCourseList = new LinkedList<>();
@@ -92,7 +89,6 @@ public abstract class RepositoryTest {
         Reader fillDatabaseReader = new BufferedReader(
                 new FileReader(context.getClassLoader().getResource("fillDb.sql").getFile()));
         scriptRunner.runScript(fillDatabaseReader);
-
     }
 
     @AfterEach
@@ -100,5 +96,6 @@ public abstract class RepositoryTest {
         Reader reader = new BufferedReader(
                 new FileReader(context.getClassLoader().getResource("clearDatabase.sql").getFile()));
         scriptRunner.runScript(reader);
+        scriptRunner.closeConnection();
     }
 }
