@@ -1,16 +1,15 @@
 package ru.fmt.university.dao;
 
+import config.TestConfig;
 import org.apache.ibatis.jdbc.ScriptRunner;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import ru.fmt.university.UniversityApp;
 import ru.fmt.university.dto.*;
 
 import javax.sql.DataSource;
@@ -22,8 +21,8 @@ import java.time.LocalTime;
 import java.util.LinkedList;
 import java.util.List;
 
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = {UniversityApp.class})
+@ContextConfiguration(classes = {TestConfig.class})
+@SpringBootTest
 public abstract class RepositoryTest {
     protected static final List<Course> testCourseList = new LinkedList<>();
     protected static final List<Group> testGroupList = new LinkedList<>();

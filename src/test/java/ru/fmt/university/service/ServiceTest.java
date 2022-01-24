@@ -1,12 +1,8 @@
 package ru.fmt.university.service;
 
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import ru.fmt.university.UniversityApp;
 import ru.fmt.university.dao.*;
 import ru.fmt.university.dto.*;
 import ru.fmt.university.service.implementation.*;
@@ -17,9 +13,7 @@ import java.util.List;
 
 import static java.util.Collections.singletonList;
 
-@ExtendWith(SpringExtension.class)
-@ExtendWith(MockitoExtension.class)
-@ContextConfiguration(classes = {UniversityApp.class})
+@SpringBootTest
 public abstract class ServiceTest {
 
     protected static Course expectedCourse = new Course(1, "Test", "Course");
