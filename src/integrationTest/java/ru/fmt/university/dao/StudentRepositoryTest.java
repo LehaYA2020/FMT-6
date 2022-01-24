@@ -15,14 +15,12 @@ public class StudentRepositoryTest extends RepositoryTest {
     public void create() {
         studentRepository.create(FOR_CREATION);
         assertNotEquals(testStudentList, studentRepository.getAll());
-
         assertEquals(FOR_CREATION, studentRepository.getById(FOR_CREATION.getId()));
     }
 
     @Test
     public void create_shouldThrow_DaoException() {
         assertEquals(4, studentRepository.getAll().size());
-
         Throwable exception = assertThrows(DaoException.class,
                 () -> studentRepository.create(new Student(0, "", "234")));
 

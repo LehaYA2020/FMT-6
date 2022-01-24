@@ -20,29 +20,24 @@ public class LessonServiceTest extends ServiceTest {
     @Test
     public void getAll_shouldCallLessonRepositoryGetAllMethod() {
         when(lessonRepository.getAll()).thenReturn(expectedLessons);
-
         List<Lesson> actualLessons = lessonService.getAll();
 
         verify(lessonRepository).getAll();
-
         assertEquals(expectedLessons, actualLessons);
     }
 
     @Test
     public void getById_shouldCallLessonRepositoryGetByIdMethod() {
         when(lessonRepository.getById(1)).thenReturn(expectedLesson);
-
         Lesson actualLesson = lessonService.getById(1);
 
         verify(lessonRepository).getById(1);
-
         assertEquals(expectedLesson, actualLesson);
     }
 
     @Test
     public void update_shouldCallLessonRepositoryUpdateMethod() {
         when(lessonRepository.update(expectedLesson)).thenReturn(expectedLesson);
-
         Lesson updatedLesson = lessonService.update(expectedLesson);
 
         verify(lessonRepository).update(expectedLesson);
@@ -58,7 +53,6 @@ public class LessonServiceTest extends ServiceTest {
     @Test
     public void getByStudent_shouldCallLessonRepositoryGetByStudentMethod() {
         when(lessonRepository.getByStudent(expectedStudent.getId())).thenReturn(expectedLessons);
-
         List<Lesson> actualLessons = lessonService.getLessonsByStudent(expectedStudent.getId());
 
         verify(lessonRepository).getByStudent(expectedStudent.getId());
@@ -68,7 +62,6 @@ public class LessonServiceTest extends ServiceTest {
     @Test
     public void getByCourse_shouldCallLessonRepositoryGetByCourseMethod() {
         when(lessonRepository.getByCourse(expectedCourse.getId())).thenReturn(expectedLessons);
-
         List<Lesson> actualLessons = lessonService.getLessonsByCourse(expectedCourse.getId());
 
         verify(lessonRepository).getByCourse(expectedCourse.getId());
@@ -78,7 +71,6 @@ public class LessonServiceTest extends ServiceTest {
     @Test
     public void getByGroup_shouldCallLessonRepositoryGetByGroupMethod() {
         when(lessonRepository.getByGroup(expectedGroup.getId())).thenReturn(expectedLessons);
-
         List<Lesson> actualLessons = lessonService.getLessonsByGroup(expectedGroup.getId());
 
         verify(lessonRepository).getByGroup(expectedGroup.getId());
@@ -88,7 +80,6 @@ public class LessonServiceTest extends ServiceTest {
     @Test
     public void getByTeacher_shouldCallLessonRepositoryGetByTeacherMethod() {
         when(lessonRepository.getByTeacher(expectedTeacher.getId())).thenReturn(expectedLessons);
-
         List<Lesson> actualLessons = lessonService.getLessonsByTeacher(expectedTeacher.getId());
 
         verify(lessonRepository).getByTeacher(expectedTeacher.getId());

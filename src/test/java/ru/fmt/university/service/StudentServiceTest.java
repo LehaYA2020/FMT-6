@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class StudentServiceTest extends ServiceTest{
+public class StudentServiceTest extends ServiceTest {
     @MockBean
     protected LessonService lessonServiceMock;
 
@@ -25,7 +25,6 @@ public class StudentServiceTest extends ServiceTest{
     @Test
     public void getAll_shouldCallStudentRepositoryGetAllMethod() {
         when(studentRepository.getAll()).thenReturn(expectedStudents);
-
         List<Student> actualStudents = studentService.getAll();
 
         verify(studentRepository).getAll();
@@ -35,7 +34,6 @@ public class StudentServiceTest extends ServiceTest{
     @Test
     public void getById_shouldCallStudentRepositoryGetByIdMethod() {
         when(studentRepository.getById(1)).thenReturn(expectedStudent);
-
         Student actualStudent = studentService.getById(1);
 
         verify(studentRepository).getById(1);
@@ -45,7 +43,6 @@ public class StudentServiceTest extends ServiceTest{
     @Test
     public void update_shouldCallStudentRepositoryUpdateMethod() {
         when(studentRepository.update(expectedStudent)).thenReturn(expectedStudent);
-
         Student updatedStudent = studentService.update(expectedStudent);
 
         verify(studentRepository).update(expectedStudent);
@@ -73,7 +70,6 @@ public class StudentServiceTest extends ServiceTest{
     @Test
     public void getSchedule_shouldCallLessonServiceGetLessonsByStudentMethod() {
         when(lessonServiceMock.getLessonsByStudent(expectedStudent.getId())).thenReturn(expectedLessons);
-
         List<Lesson> actualStudents = studentService.getSchedule(expectedStudent.getId());
 
         verify(lessonServiceMock).getLessonsByStudent(expectedStudent.getId());
@@ -83,7 +79,6 @@ public class StudentServiceTest extends ServiceTest{
     @Test
     public void getByGroup_shouldCallStudentRepositoryGetByGroupMethod() {
         when(studentRepository.getByGroupId(1)).thenReturn(expectedStudents);
-
         List<Student> actualStudents = studentService.getByGroup(1);
 
         verify(studentRepository).getByGroupId(1);

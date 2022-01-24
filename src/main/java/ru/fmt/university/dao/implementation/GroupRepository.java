@@ -16,7 +16,7 @@ import java.util.List;
 
 @Repository
 @Log4j2
-public class GroupRepository  implements IGroupRepository {
+public class GroupRepository implements IGroupRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
     @Autowired
@@ -151,7 +151,7 @@ public class GroupRepository  implements IGroupRepository {
     public boolean assignToLesson(Integer lessonId, Integer groupId) {
         log.trace("assignToLesson({}, {})", lessonId, groupId);
         try {
-                jdbcTemplate.update(Query.ASSIGN_GROUP_TO_LESSON.getText(), lessonId, groupId);
+            jdbcTemplate.update(Query.ASSIGN_GROUP_TO_LESSON.getText(), lessonId, groupId);
         } catch (DataAccessException e) {
             log.error(MessagesConstants.CANNOT_ASSIGN_GROUPS_TO_LESSON, e);
             throw new DaoException(MessagesConstants.CANNOT_ASSIGN_GROUPS_TO_LESSON, e);

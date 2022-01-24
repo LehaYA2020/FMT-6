@@ -13,7 +13,6 @@ public class TeacherRepositoryTest extends RepositoryTest {
     @Test
     public void create() {
         teacherRepository.create(FOR_CREATION);
-
         assertNotEquals(testTeacherList, teacherRepository.getAll());
         assertEquals(FOR_CREATION, teacherRepository.getById(FOR_CREATION.getId()));
     }

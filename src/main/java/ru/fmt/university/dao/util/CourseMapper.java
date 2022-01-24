@@ -11,6 +11,6 @@ import java.sql.SQLException;
 public class CourseMapper implements RowMapper<Course> {
     @Override
     public Course mapRow(ResultSet rs, int rowNum) throws SQLException {
-        return new Course(rs.getInt("id"),rs.getString("name"), rs.getString("description"));
+        return new Course(rs.getInt("id"), rs.getString("name"), rs.getString("description"));
     }
 }

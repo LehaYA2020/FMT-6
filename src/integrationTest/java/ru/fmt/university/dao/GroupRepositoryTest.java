@@ -14,7 +14,6 @@ public class GroupRepositoryTest extends RepositoryTest {
     public void create() {
         groupRepository.create(FOR_CREATION);
         assertNotEquals(testGroupList, groupRepository.getAll());
-
         assertEquals(FOR_CREATION, groupRepository.getById(FOR_CREATION.getId()));
     }
 
@@ -52,7 +51,7 @@ public class GroupRepositoryTest extends RepositoryTest {
 
     @Test
     public void assignToLesson() {
-        for(Group group:testGroupList.subList(1, 2)) {
+        for (Group group : testGroupList.subList(1, 2)) {
             groupRepository.assignToLesson(1, group.getId());
         }
         assertEquals(lessonRepository.getAll(), lessonRepository.getByGroup(testGroupList.get(1).getId()));

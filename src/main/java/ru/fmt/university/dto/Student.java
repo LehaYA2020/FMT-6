@@ -14,7 +14,7 @@ public class Student {
         this.groupId = groupId;
     }
 
-    public Student(int id,String firstName, String lastName, int groupId) {
+    public Student(int id, String firstName, String lastName, int groupId) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

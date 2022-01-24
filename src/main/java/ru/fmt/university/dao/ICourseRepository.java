@@ -6,6 +6,6 @@ import ru.fmt.university.dto.Course;
 import java.util.List;
 
 @Repository
-public interface ICourseRepository extends IRepository<Course, Integer>{
+public interface ICourseRepository extends IRepository<Course, Integer> {
     List<Course> getByGroupId(Integer groupId);
 }

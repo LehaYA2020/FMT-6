@@ -25,7 +25,6 @@ public class TeacherServiceTest extends ServiceTest {
     @Test
     public void getAll_shouldCallTeacherRepositoryGetAllMethod() {
         when(teacherRepository.getAll()).thenReturn(expectedTeachers);
-
         List<Teacher> actualTeachers = teacherService.getAll();
 
         verify(teacherRepository).getAll();
@@ -36,7 +35,6 @@ public class TeacherServiceTest extends ServiceTest {
     @Test
     public void getById_shouldCallTeacherRepositoryGetByIdMethod() {
         when(teacherRepository.getById(1)).thenReturn(expectedTeacher);
-
         Teacher actualTeacher = teacherService.getById(1);
 
         verify(teacherRepository).getById(1);
@@ -46,7 +44,6 @@ public class TeacherServiceTest extends ServiceTest {
     @Test
     public void update_shouldCallTeacherRepositoryUpdateMethod() {
         when(teacherRepository.update(expectedTeacher)).thenReturn(expectedTeacher);
-
         Teacher updatedTeacher = teacherService.update(expectedTeacher);
 
         verify(teacherRepository).update(expectedTeacher);
@@ -62,7 +59,6 @@ public class TeacherServiceTest extends ServiceTest {
     @Test
     public void getByCourse_shouldCallTeacherRepositoryGetByCourseMethod() {
         when(teacherRepository.getByCourse(expectedCourse.getId())).thenReturn(expectedTeachers);
-
         List<Teacher> actualTeachers = teacherService.getByCourse(expectedCourse.getId());
 
         verify(teacherRepository).getByCourse(expectedCourse.getId());
@@ -72,7 +68,6 @@ public class TeacherServiceTest extends ServiceTest {
     @Test
     public void getSchedule_shouldCallTeacherRepositoryGetScheduleMethod() {
         when(lessonServiceMock.getLessonsByTeacher(expectedTeacher.getId())).thenReturn(expectedLessons);
-
         List<Lesson> actualTeachers = teacherService.getSchedule(expectedTeacher.getId());
 
         verify(lessonServiceMock).getLessonsByTeacher(expectedTeacher.getId());
@@ -82,7 +77,6 @@ public class TeacherServiceTest extends ServiceTest {
     @Test
     public void getByLesson_shouldCallTeacherRepositoryGetByLessonMethod() {
         when(teacherRepository.getByLesson(expectedLesson.getId())).thenReturn(expectedTeacher);
-
         Teacher actualTeacher = teacherService.getByLesson(expectedLesson.getId());
 
         verify(teacherRepository).getByLesson(expectedLesson.getId());

@@ -16,7 +16,6 @@ public class CourseRepositoryTest extends RepositoryTest {
     @Test
     public void create() {
         courseRepository.create(FOR_CREATION);
-
         assertNotEquals(testCourseList, courseRepository.getAll());
         assertEquals(FOR_CREATION, courseRepository.getById(FOR_CREATION.getId()));
     }
@@ -29,7 +28,6 @@ public class CourseRepositoryTest extends RepositoryTest {
     @Test
     public void getById_shouldReturnCourseById() {
         Course expected = testCourseList.get(0);
-
         assertEquals(expected, courseRepository.getById(1));
     }
 
@@ -60,7 +58,6 @@ public class CourseRepositoryTest extends RepositoryTest {
     @Test
     public void getByGroupId() {
         List<Course> expected = testCourseList.subList(0, 2);
-
         assertEquals(expected, courseRepository.getByGroupId(1));
     }
 }
