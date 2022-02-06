@@ -1,6 +1,6 @@
 package ru.fmt.university.service;
 
-import ru.fmt.university.dto.Group;
+import ru.fmt.university.model.dto.Group;
 
 import java.util.List;
 

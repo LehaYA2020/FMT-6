@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.fmt.university.dto.Lesson;
+import ru.fmt.university.model.dto.Lesson;
 import ru.fmt.university.service.ILessonService;
 
 import java.util.List;

@@ -8,7 +8,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
-import ru.fmt.university.dto.*;
+import ru.fmt.university.dao.implementation.hibernate.*;
+import ru.fmt.university.dao.implementation.jdbcTemplate.*;
+import ru.fmt.university.model.LessonType;
+import ru.fmt.university.model.dto.*;
 
 import javax.sql.DataSource;
 import java.io.BufferedReader;
@@ -27,16 +30,27 @@ public abstract class RepositoryTest {
     protected static final List<Teacher> testTeacherList = new LinkedList<>();
     protected static final List<Lesson> testLessonList = new LinkedList<>();
 
-    @Autowired
-    protected ICourseRepository courseRepository;
-    @Autowired
-    protected IGroupRepository groupRepository;
-    @Autowired
-    protected ILessonRepository lessonRepository;
-    @Autowired
-    protected IStudentRepository studentRepository;
-    @Autowired
-    protected ITeacherRepository teacherRepository;
+    @Autowired(required = false)
+    protected CourseRepositoryJdbcTemplateImpl courseRepository;
+    @Autowired(required = false)
+    protected GroupRepositoryJdbcTemplateImpl groupRepository;
+    @Autowired(required = false)
+    protected LessonRepositoryJdbcTemplateImpl lessonRepository;
+    @Autowired(required = false)
+    protected StudentRepositoryJdbcTemplateImpl studentRepository;
+    @Autowired(required = false)
+    protected TeacherRepositoryJdbcTemplateImpl teacherRepository;
+
+    @Autowired(required = false)
+    protected CourseRepositoryHibernateImpl courseRepositoryHibernate;
+    @Autowired(required = false)
+    protected GroupRepositoryHibernateImpl groupRepositoryHibernate;
+    @Autowired(required = false)
+    protected LessonRepositoryHibernateImpl lessonRepositoryHibernate;
+    @Autowired(required = false)
+    protected StudentRepositoryHibernateImpl studentRepositoryHibernate;
+    @Autowired(required = false)
+    protected TeacherRepositoryHibernateImpl teacherRepositoryHibernate;
 
     @Autowired
     protected DataSource dataSource;

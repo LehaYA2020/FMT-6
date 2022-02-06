@@ -3,9 +3,9 @@ package ru.fmt.university.service.implementation;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import ru.fmt.university.dao.ITeacherRepository;
-import ru.fmt.university.dto.Lesson;
-import ru.fmt.university.dto.Teacher;
+import ru.fmt.university.dao.interfaces.ITeacherRepository;
+import ru.fmt.university.model.dto.Lesson;
+import ru.fmt.university.model.dto.Teacher;
 import ru.fmt.university.service.ILessonService;
 import ru.fmt.university.service.ITeacherService;
 

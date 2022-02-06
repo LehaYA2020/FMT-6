@@ -2,8 +2,6 @@ delete from lessons_groups;
 
 delete from groups_courses;
 
-delete from students_groups;
-
 delete from lessons;
 ALTER TABLE lessons ALTER COLUMN id RESTART WITH 1;
 

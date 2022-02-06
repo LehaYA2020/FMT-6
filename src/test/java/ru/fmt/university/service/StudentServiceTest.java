@@ -2,8 +2,8 @@ package ru.fmt.university.service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import ru.fmt.university.dto.Lesson;
-import ru.fmt.university.dto.Student;
+import ru.fmt.university.model.dto.Lesson;
+import ru.fmt.university.model.dto.Student;
 import ru.fmt.university.service.implementation.LessonService;
 
 import java.util.List;

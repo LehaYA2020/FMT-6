@@ -3,8 +3,9 @@ package ru.fmt.university.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import ru.fmt.university.dao.*;
-import ru.fmt.university.dto.*;
+import ru.fmt.university.dao.interfaces.*;
+import ru.fmt.university.model.LessonType;
+import ru.fmt.university.model.dto.*;
 import ru.fmt.university.service.implementation.*;
 
 import java.time.DayOfWeek;

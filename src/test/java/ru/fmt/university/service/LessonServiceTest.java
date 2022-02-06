@@ -1,7 +1,7 @@
 package ru.fmt.university.service;
 
 import org.junit.jupiter.api.Test;
-import ru.fmt.university.dto.Lesson;
+import ru.fmt.university.model.dto.Lesson;
 
 import java.util.List;
 

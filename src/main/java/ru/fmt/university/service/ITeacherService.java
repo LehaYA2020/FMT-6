@@ -1,7 +1,7 @@
 package ru.fmt.university.service;
 
-import ru.fmt.university.dto.Lesson;
-import ru.fmt.university.dto.Teacher;
+import ru.fmt.university.model.dto.Lesson;
+import ru.fmt.university.model.dto.Teacher;
 
 import java.util.List;
 
