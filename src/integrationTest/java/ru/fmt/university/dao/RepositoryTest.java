@@ -103,10 +103,12 @@ public abstract class RepositoryTest {
         Reader fillDatabaseReader = new BufferedReader(
                 new FileReader(context.getClassLoader().getResource("fillDb.sql").getFile()));
         scriptRunner.runScript(fillDatabaseReader);
+        scriptRunner.closeConnection();
     }
 
     @AfterEach
     public void clearDatabase() throws Exception {
+        scriptRunner = new ScriptRunner(dataSource.getConnection());
         Reader reader = new BufferedReader(
                 new FileReader(context.getClassLoader().getResource("clearDatabase.sql").getFile()));
         scriptRunner.runScript(reader);

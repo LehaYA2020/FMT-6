@@ -35,7 +35,7 @@ public class LessonEntity {
     @JoinTable(name = "lessons_groups",
             joinColumns = @JoinColumn(name = "lesson_id"),
             inverseJoinColumns = @JoinColumn(name = "group_id"))
-    private List<GroupEntity> groupEntities;
+    private List<GroupEntity> groups;
 
     public LessonEntity(int id) {
         this.id = id;
@@ -119,12 +119,12 @@ public class LessonEntity {
         this.type = type;
     }
 
-    public List<GroupEntity> getGroupEntities() {
-        return groupEntities;
+    public List<GroupEntity> getGroups() {
+        return groups;
     }
 
-    public void setGroupEntities(List<GroupEntity> groupEntities) {
-        this.groupEntities = groupEntities;
+    public void setGroups(List<GroupEntity> groups) {
+        this.groups = groups;
     }
 
     @Override

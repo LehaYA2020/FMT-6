@@ -77,6 +77,6 @@ public class LessonRepositoryHibernateImplTest extends RepositoryTest {
 
     @Test
     public void getByGroup() {
-        assertEquals(testLessonList.subList(0, 2), lessonRepositoryHibernate.getByGroup(testGroupList.get(0).getId()));
+        assertEquals(testLessonList.subList(0, 2), lessonRepositoryHibernate.getByGroup(1));
     }
 }

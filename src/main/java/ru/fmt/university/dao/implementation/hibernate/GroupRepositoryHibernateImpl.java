@@ -146,7 +146,7 @@ public class GroupRepositoryHibernateImpl implements IGroupRepository {
         try {
             entityManager = entityManagerFactory.createEntityManager();
             entityManager.getTransaction().begin();
-            groups = groupMapper.toGroup(entityManager.find(LessonEntity.class, lessonId).getGroupEntities());
+            groups = groupMapper.toGroup(entityManager.find(LessonEntity.class, lessonId).getGroups());
             entityManager.flush();
             entityManager.getTransaction().commit();
             entityManager.close();

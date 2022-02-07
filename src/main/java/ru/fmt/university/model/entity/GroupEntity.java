@@ -12,19 +12,16 @@ public class GroupEntity {
     private int id;
     @Column(name = "name")
     private String name;
-
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "groups_courses",
             joinColumns = @JoinColumn(name = "group_id"),
             inverseJoinColumns = @JoinColumn(name = "course_id"))
     private List<CourseEntity> courses;
-
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "lessons_groups",
             joinColumns = @JoinColumn(name = "group_id"),
             inverseJoinColumns = @JoinColumn(name = "lesson_id"))
     private List<LessonEntity> lessons;
-
 
     @OneToMany(mappedBy = "group")
     List<StudentEntity> students;
