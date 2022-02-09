@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.fmt.university.dto.Lesson;
-import ru.fmt.university.dto.Teacher;
+import ru.fmt.university.model.dto.Lesson;
+import ru.fmt.university.model.dto.Teacher;
 import ru.fmt.university.service.ITeacherService;
 
 import java.util.List;
@@ -56,8 +56,8 @@ public class TeacherController {
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
-    @GetMapping("/teachers/{lessonId}")
-    public ResponseEntity<Teacher> getTeacherByLesson(@PathVariable(name = "lessonId") int lessonId) {
+    @GetMapping(value = "/teachers", params = {"lessonId"})
+    public ResponseEntity<Teacher> getTeacherByLesson(@RequestParam(value = "lessonId") int lessonId) {
         final Teacher teacher = teacherService.getByLesson(lessonId);
 
         return teacher != null
@@ -65,8 +65,8 @@ public class TeacherController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/teachers/{courseId}")
-    public ResponseEntity<List<Teacher>> getTeachersByCourse(@PathVariable(name = "courseId") int courseId) {
+    @GetMapping(value = "/teachers", params = {"courseId"})
+    public ResponseEntity<List<Teacher>> getTeachersByCourse(@RequestParam(value = "courseId") int courseId) {
         final List<Teacher> teachers = teacherService.getByCourse(courseId);
 
         return !teachers.isEmpty()
@@ -74,8 +74,8 @@ public class TeacherController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/teachers/{teacherId}")
-    public ResponseEntity<List<Lesson>> getTeacherSchedule(@PathVariable(name = "teacherId") int teacherId) {
+    @GetMapping(value = "/teachers", params = {"teacherId"})
+    public ResponseEntity<List<Lesson>> getTeacherSchedule(@RequestParam(value = "teacherId") int teacherId) {
         final List<Lesson> lessons = teacherService.getSchedule(teacherId);
 
         return !lessons.isEmpty()

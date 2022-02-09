@@ -10,6 +10,8 @@ CREATE TABLE IF NOT EXISTS students
   id bigint NOT NULL GENERATED ALWAYS AS IDENTITY,
   first_name VARCHAR(30) NOT NULL CHECK (first_name != ''),
   last_name VARCHAR(30) NOT NULL CHECK (last_name != ''),
+  group_id bigint,
+  FOREIGN KEY (group_id) REFERENCES groups(id) ON UPDATE CASCADE ON DELETE CASCADE,
   PRIMARY KEY (id)
 );
 
@@ -28,14 +30,6 @@ CREATE TABLE IF NOT EXISTS groups_courses
   UNIQUE (group_id , course_id),
   FOREIGN KEY (group_id) REFERENCES groups(id) ON UPDATE CASCADE ON DELETE CASCADE,
   FOREIGN KEY (course_id) REFERENCES courses(id) ON UPDATE CASCADE ON DELETE CASCADE
-);
-
-CREATE TABLE IF NOT EXISTS students_groups
-(
-  student_id bigint NOT NULL UNIQUE,
-  group_id bigint NOT NULL,
-  FOREIGN KEY (student_id) REFERENCES students(id) ON UPDATE CASCADE ON DELETE CASCADE,
-  FOREIGN KEY (group_id) REFERENCES groups(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS teachers

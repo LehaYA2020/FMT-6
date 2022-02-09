@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.fmt.university.dto.Course;
+import ru.fmt.university.model.dto.Course;
 import ru.fmt.university.service.ICourseService;
 
 import java.util.List;
@@ -29,7 +29,7 @@ public class CourseController {
                 : new ResponseEntity<>(courses, HttpStatus.OK);
     }
 
-    @GetMapping("/courses/{id}")
+    @GetMapping(value = "/courses/{id}")
     public ResponseEntity<Course> getById(@PathVariable(name = "id") int id) {
         final Course course = courseService.getById(id);
 
@@ -38,8 +38,8 @@ public class CourseController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/courses/{groupId}")
-    public ResponseEntity<List<Course>> getByGroupId(@PathVariable(name = "groupId") int groupId) {
+    @GetMapping(value = "/courses", params = {"{groupId}"})
+    public ResponseEntity<List<Course>> getByGroupId(@RequestParam(value = "groupId") int groupId) {
         final List<Course> courses = courseService.getByGroupId(groupId);
 
         return !courses.isEmpty()

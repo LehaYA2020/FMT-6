@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.fmt.university.dto.Student;
+import ru.fmt.university.model.dto.Student;
 import ru.fmt.university.service.IStudentService;
 
 import java.util.List;
@@ -55,8 +55,8 @@ public class StudentController {
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
-    @GetMapping("/students/{groupId}")
-    public ResponseEntity<List<Student>> getByGroupId(@PathVariable(name = "groupId") int groupId) {
+    @GetMapping(value = "/students", params = {"groupId"})
+    public ResponseEntity<List<Student>> getByGroupId(@RequestParam(value = "groupId") int groupId) {
         final List<Student> students = studentService.getByGroup(groupId);
 
         return !students.isEmpty()
@@ -64,8 +64,8 @@ public class StudentController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PutMapping("/students/{studentId}/{groupId}")
-    public ResponseEntity<?> assignStudentToGroup(@PathVariable(name = "studentId") int studentId, @PathVariable(name = "groupId") int groupId) {
+    @PutMapping(value = "/students", params = {"studentId","groupId"})
+    public ResponseEntity<?> assignStudentToGroup(@RequestParam(value = "studentId") int studentId, @RequestParam(value = "groupId") int groupId) {
         final boolean assigned = studentService.assignStudentToGroup(studentId, groupId);
 
         return assigned
