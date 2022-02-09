@@ -36,10 +36,11 @@ public class LessonRepositoryHibernateImpl implements ILessonRepository {
             entityManager.persist(lessonMapper.toEntity(lesson));
             entityManager.flush();
             entityManager.getTransaction().commit();
-            entityManager.close();
         } catch (Exception e) {
             log.error(MessagesConstants.CANNOT_INSERT_LESSON, e);
             throw new DaoException(MessagesConstants.CANNOT_INSERT_LESSON, e);
+        } finally {
+            entityManager.close();
         }
         log.debug("Created {}.", lesson);
 
@@ -56,10 +57,11 @@ public class LessonRepositoryHibernateImpl implements ILessonRepository {
                     .getResultList());
             entityManager.flush();
             entityManager.getTransaction().commit();
-            entityManager.close();
         } catch (Exception e) {
             log.error(MessagesConstants.CANNOT_GET_ALL_LESSONS, e);
             throw new DaoException(MessagesConstants.CANNOT_GET_ALL_LESSONS, e);
+        } finally {
+            entityManager.close();
         }
         log.debug("Found {}.", lessons);
 
@@ -75,10 +77,11 @@ public class LessonRepositoryHibernateImpl implements ILessonRepository {
             lesson = lessonMapper.toLesson(entityManager.find(LessonEntity.class, id));
             entityManager.flush();
             entityManager.getTransaction().commit();
-            entityManager.close();
         } catch (Exception e) {
             log.error(MessagesConstants.CANNOT_GET_LESSON_BY_ID, e);
             throw new DaoException(MessagesConstants.CANNOT_GET_LESSON_BY_ID, e);
+        } finally {
+            entityManager.close();
         }
         log.debug("Found {}.", lesson);
 
@@ -96,10 +99,11 @@ public class LessonRepositoryHibernateImpl implements ILessonRepository {
                     .setParameter(1, id).executeUpdate();
             entityManager.flush();
             entityManager.getTransaction().commit();
-            entityManager.close();
         } catch (Exception e) {
             log.error(MessagesConstants.CANNOT_DELETE_LESSON_BY_ID, e);
             throw new DaoException(MessagesConstants.CANNOT_DELETE_LESSON_BY_ID, e);
+        } finally {
+            entityManager.close();
         }
         log.debug("Lesson with id={} deleted.", id);
         return true;
@@ -113,10 +117,11 @@ public class LessonRepositoryHibernateImpl implements ILessonRepository {
             entityManager.merge(lessonMapper.toEntity(lesson));
             entityManager.flush();
             entityManager.getTransaction().commit();
-            entityManager.close();
         } catch (Exception e) {
             log.error(MessagesConstants.CANNOT_UPDATE_LESSON, e);
             throw new DaoException(MessagesConstants.CANNOT_UPDATE_LESSON, e);
+        } finally {
+            entityManager.close();
         }
         log.debug("Lesson {} updated.", lesson);
 
@@ -132,10 +137,11 @@ public class LessonRepositoryHibernateImpl implements ILessonRepository {
             lessons = lessonMapper.toLesson(entityManager.find(StudentEntity.class, studentId).getGroup().getLessons());
             entityManager.flush();
             entityManager.getTransaction().commit();
-            entityManager.close();
         } catch (Exception e) {
             log.error(MessagesConstants.CANNOT_GET_LESSON_BY_STUDENT, e);
             throw new DaoException(MessagesConstants.CANNOT_GET_LESSON_BY_STUDENT, e);
+        } finally {
+            entityManager.close();
         }
         log.debug("Found {} by student {}.", lessons, studentId);
 
@@ -151,10 +157,11 @@ public class LessonRepositoryHibernateImpl implements ILessonRepository {
             lessons = lessonMapper.toLesson(entityManager.find(TeacherEntity.class, teacherId).getLessons());
             entityManager.flush();
             entityManager.getTransaction().commit();
-            entityManager.close();
         } catch (Exception e) {
             log.error(MessagesConstants.CANNOT_GET_LESSON_BY_TEACHER, e);
             throw new DaoException(MessagesConstants.CANNOT_GET_LESSON_BY_TEACHER, e);
+        } finally {
+            entityManager.close();
         }
         log.debug("Found {} by teacher {}.", lessons, teacherId);
 
@@ -170,10 +177,11 @@ public class LessonRepositoryHibernateImpl implements ILessonRepository {
             lessons = lessonMapper.toLesson(entityManager.find(GroupEntity.class, groupId).getLessons());
             entityManager.flush();
             entityManager.getTransaction().commit();
-            entityManager.close();
         } catch (Exception e) {
             log.error(MessagesConstants.CANNOT_GET_LESSON_BY_GROUP, e);
             throw new DaoException(MessagesConstants.CANNOT_GET_LESSON_BY_GROUP, e);
+        } finally {
+            entityManager.close();
         }
         log.debug("Found {} by group {}.", lessons, groupId);
 
@@ -189,10 +197,11 @@ public class LessonRepositoryHibernateImpl implements ILessonRepository {
             lessons = lessonMapper.toLesson(entityManager.find(CourseEntity.class, courseId).getLessons());
             entityManager.flush();
             entityManager.getTransaction().commit();
-            entityManager.close();
         } catch (Exception e) {
             log.error(MessagesConstants.CANNOT_GET_LESSON_BY_COURSE, e);
             throw new DaoException(MessagesConstants.CANNOT_GET_LESSON_BY_COURSE, e);
+        } finally {
+            entityManager.close();
         }
         log.debug("Found {} by course {}.", lessons, courseId);
 

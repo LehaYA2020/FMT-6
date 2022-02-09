@@ -37,10 +37,11 @@ public class CourseRepositoryHibernateImpl implements ICourseRepository {
             entityManager.persist(courseMapper.toEntity(course));
             entityManager.flush();
             entityManager.getTransaction().commit();
-            entityManager.close();
         } catch (Exception e) {
             log.error(MessagesConstants.CANNOT_INSERT_COURSE, e);
             throw new DaoException(MessagesConstants.CANNOT_INSERT_COURSE, e);
+        } finally {
+            entityManager.close();
         }
         log.debug("{} created", course);
         return course;
@@ -56,10 +57,11 @@ public class CourseRepositoryHibernateImpl implements ICourseRepository {
                     .getResultList());
             entityManager.flush();
             entityManager.getTransaction().commit();
-            entityManager.close();
         } catch (Exception e) {
             log.error(MessagesConstants.CANNOT_GET_COURSES, e);
             throw new DaoException(MessagesConstants.CANNOT_GET_COURSES, e);
+        } finally {
+            entityManager.close();
         }
         log.trace("Found {} courses", courses.size());
         return courses;
@@ -75,10 +77,11 @@ public class CourseRepositoryHibernateImpl implements ICourseRepository {
             course = courseMapper.toCourse(entity);
             entityManager.flush();
             entityManager.getTransaction().commit();
-            entityManager.close();
         } catch (Exception e) {
             log.error(MessagesConstants.CANNOT_GET_COURSE_BY_ID, e);
             throw new DaoException(MessagesConstants.CANNOT_GET_COURSE_BY_ID, e);
+        } finally {
+            entityManager.close();
         }
         log.debug("Found {}.", course);
         return course;
@@ -92,10 +95,11 @@ public class CourseRepositoryHibernateImpl implements ICourseRepository {
             entityManager.merge(courseMapper.toEntity(course));
             entityManager.flush();
             entityManager.getTransaction().commit();
-            entityManager.close();
         } catch (Exception e) {
             log.error(MessagesConstants.CANNOT_UPDATE_COURSE, e);
             throw new DaoException(MessagesConstants.CANNOT_UPDATE_COURSE, e);
+        } finally {
+            entityManager.close();
         }
         log.debug("Course updated {}", course);
         return course;
@@ -109,10 +113,11 @@ public class CourseRepositoryHibernateImpl implements ICourseRepository {
             entityManager.remove(entityManager.find(CourseEntity.class, id));
             entityManager.flush();
             entityManager.getTransaction().commit();
-            entityManager.close();
         } catch (Exception e) {
             log.error(MessagesConstants.CANNOT_DELETE_COURSE, e);
             throw new DaoException(MessagesConstants.CANNOT_DELETE_COURSE, e);
+        } finally {
+            entityManager.close();
         }
         log.debug("Course with id={} deleted.", id);
         return true;
@@ -127,10 +132,11 @@ public class CourseRepositoryHibernateImpl implements ICourseRepository {
             courses = courseMapper.toCourse(entityManager.find(GroupEntity.class, groupId).getCourses());
             entityManager.flush();
             entityManager.getTransaction().commit();
-            entityManager.close();
         } catch (Exception e) {
             log.error(MessagesConstants.CANNOT_DELETE_COURSE, e);
             throw new DaoException(MessagesConstants.CANNOT_DELETE_COURSE, e);
+        } finally {
+            entityManager.close();
         }
         log.debug("Found {}", courses);
         return courses;

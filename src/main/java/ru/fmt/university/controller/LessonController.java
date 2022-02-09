@@ -55,8 +55,8 @@ public class LessonController {
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
-    @GetMapping("/lessons/{studentId}")
-    public ResponseEntity<List<Lesson>> getLessonByStudent(@PathVariable(name = "studentId") int studentId) {
+    @GetMapping(value = "/lessons", params = {"studentId"})
+    public ResponseEntity<List<Lesson>> getLessonByStudent(@RequestParam(value = "studentId") int studentId) {
         final List<Lesson> lessons = lessonService.getLessonsByStudent(studentId);
 
         return !lessons.isEmpty()
@@ -64,8 +64,8 @@ public class LessonController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/lessons/{groupId}")
-    public ResponseEntity<List<Lesson>> getLessonByGroup(@PathVariable(name = "groupId") int groupId) {
+    @GetMapping(value = "/lessons", params = {"groupId"})
+    public ResponseEntity<List<Lesson>> getLessonByGroup(@RequestParam(value =   "groupId") int groupId) {
         final List<Lesson> lessons = lessonService.getLessonsByGroup(groupId);
 
         return !lessons.isEmpty()
@@ -73,8 +73,8 @@ public class LessonController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/lessons/{teacherId}")
-    public ResponseEntity<List<Lesson>> getLessonByTeacher(@PathVariable(name = "teacherId") int teacherId) {
+    @GetMapping(value = "/lessons", params = {"teacherId"})
+    public ResponseEntity<List<Lesson>> getLessonByTeacher(@RequestParam(value = "teacherId") int teacherId) {
         final List<Lesson> lessons = lessonService.getLessonsByTeacher(teacherId);
 
         return !lessons.isEmpty()
@@ -82,8 +82,8 @@ public class LessonController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/lessons/{courseId}")
-    public ResponseEntity<List<Lesson>> getLessonByCourse(@PathVariable(name = "courseId") int courseId) {
+    @GetMapping(value = "/lessons", params = {"courseId"})
+    public ResponseEntity<List<Lesson>> getLessonByCourse(@RequestParam(value = "courseId") int courseId) {
         final List<Lesson> lessons = lessonService.getLessonsByCourse(courseId);
 
         return !lessons.isEmpty()

@@ -40,10 +40,11 @@ public class GroupRepositoryHibernateImpl implements IGroupRepository {
             entityManager.persist(groupMapper.toEntity(group));
             entityManager.flush();
             entityManager.getTransaction().commit();
-            entityManager.close();
         } catch (RuntimeException e) {
             log.error(MessagesConstants.CANNOT_INSERT_GROUPS, e);
             throw new DaoException(MessagesConstants.CANNOT_INSERT_GROUPS, e);
+        } finally {
+            entityManager.close();
         }
         log.debug("Group {} created.", group);
         return group;
@@ -58,10 +59,11 @@ public class GroupRepositoryHibernateImpl implements IGroupRepository {
             groups = groupMapper.toGroup(entityManager.createQuery("FROM GroupEntity", GroupEntity.class).getResultList());
             entityManager.flush();
             entityManager.getTransaction().commit();
-            entityManager.close();
         } catch (Exception e) {
             log.error(MessagesConstants.CANNOT_GET_GROUPS, e);
             throw new DaoException(MessagesConstants.CANNOT_GET_GROUPS, e);
+        } finally {
+            entityManager.close();
         }
         log.debug("Found {}.", groups);
         return groups;
@@ -76,10 +78,11 @@ public class GroupRepositoryHibernateImpl implements IGroupRepository {
             group = groupMapper.toGroup(entityManager.find(GroupEntity.class, id));
             entityManager.flush();
             entityManager.getTransaction().commit();
-            entityManager.close();
         } catch (Exception e) {
             log.error(MessagesConstants.CANNOT_GET_GROUP_BY_ID, e);
             throw new DaoException(MessagesConstants.CANNOT_GET_GROUP_BY_ID, e);
+        } finally {
+            entityManager.close();
         }
         log.debug("Found {}.", group);
         return group;
@@ -93,10 +96,11 @@ public class GroupRepositoryHibernateImpl implements IGroupRepository {
             entityManager.remove(entityManager.find(GroupEntity.class, id));
             entityManager.flush();
             entityManager.getTransaction().commit();
-            entityManager.close();
         } catch (Exception e) {
             log.error(MessagesConstants.CANNOT_DELETE_GROUP, e);
             throw new DaoException(MessagesConstants.CANNOT_DELETE_GROUP, e);
+        } finally {
+            entityManager.close();
         }
         log.debug("Group with id={}.", id);
         return true;
@@ -112,10 +116,11 @@ public class GroupRepositoryHibernateImpl implements IGroupRepository {
                     .setParameter(2, courseId).executeUpdate();
             entityManager.flush();
             entityManager.getTransaction().commit();
-            entityManager.close();
         } catch (Exception e) {
             log.error(MessagesConstants.CANNOT_ASSIGN_GROUP_TO_COURSE, e);
             throw new DaoException(MessagesConstants.CANNOT_ASSIGN_GROUP_TO_COURSE, e);
+        } finally {
+            entityManager.close();
         }
         log.debug("Group {} assigned to course {}", groupId, courseId);
         return true;
@@ -131,10 +136,11 @@ public class GroupRepositoryHibernateImpl implements IGroupRepository {
                     .setParameter(2, courseId).executeUpdate();
             entityManager.flush();
             entityManager.getTransaction().commit();
-            entityManager.close();
         } catch (Exception e) {
             log.error(MessagesConstants.CANNOT_DELETE_GROUP_FROM_COURSE, e);
             throw new DaoException(MessagesConstants.CANNOT_DELETE_GROUP_FROM_COURSE, e);
+        } finally {
+            entityManager.close();
         }
         log.debug("Course {} deleted from Course {}", groupId, courseId);
         return true;
@@ -149,10 +155,11 @@ public class GroupRepositoryHibernateImpl implements IGroupRepository {
             groups = groupMapper.toGroup(entityManager.find(LessonEntity.class, lessonId).getGroups());
             entityManager.flush();
             entityManager.getTransaction().commit();
-            entityManager.close();
         } catch (Exception e) {
             log.error(MessagesConstants.CANNOT_GET_BY_LESSON, e);
             throw new DaoException(MessagesConstants.CANNOT_GET_BY_LESSON, e);
+        } finally {
+            entityManager.close();
         }
         log.debug("Found {} by {}", groups, lessonId);
         return groups;
@@ -167,10 +174,11 @@ public class GroupRepositoryHibernateImpl implements IGroupRepository {
             group = groupMapper.toGroup(entityManager.find(StudentEntity.class, studentId).getGroup());
             entityManager.flush();
             entityManager.getTransaction().commit();
-            entityManager.close();
         } catch (Exception e) {
             log.error(MessagesConstants.CANNOT_GET_BY_STUDENT, e);
             throw new DaoException(MessagesConstants.CANNOT_GET_BY_STUDENT, e);
+        } finally {
+            entityManager.close();
         }
         log.debug("Found {} by {}", group, studentId);
         return group;
@@ -185,10 +193,11 @@ public class GroupRepositoryHibernateImpl implements IGroupRepository {
             groups = groupMapper.toGroup(entityManager.find(CourseEntity.class, courseId).getGroups());
             entityManager.flush();
             entityManager.getTransaction().commit();
-            entityManager.close();
         } catch (Exception e) {
             log.error(MessagesConstants.CANNOT_GET_BY_LESSON, e);
             throw new DaoException(MessagesConstants.CANNOT_GET_BY_LESSON, e);
+        } finally {
+            entityManager.close();
         }
         log.debug("Found {} by {}", groups, courseId);
         return groups;
@@ -202,10 +211,11 @@ public class GroupRepositoryHibernateImpl implements IGroupRepository {
             entityManager.merge(groupMapper.toEntity(group));
             entityManager.flush();
             entityManager.getTransaction().commit();
-            entityManager.close();
         } catch (Exception e) {
             log.error(MessagesConstants.CANNOT_UPDATE_GROUP, e);
             throw new DaoException(MessagesConstants.CANNOT_UPDATE_GROUP, e);
+        } finally {
+            entityManager.close();
         }
         log.debug("Group {} updated", group);
         return group;
@@ -221,10 +231,11 @@ public class GroupRepositoryHibernateImpl implements IGroupRepository {
                     .setParameter(2, groupId).executeUpdate();
             entityManager.flush();
             entityManager.getTransaction().commit();
-            entityManager.close();
         } catch (Exception e) {
             log.error(MessagesConstants.CANNOT_ASSIGN_GROUPS_TO_LESSON, e);
             throw new DaoException(MessagesConstants.CANNOT_ASSIGN_GROUPS_TO_LESSON, e);
+        } finally {
+            entityManager.close();
         }
         log.debug("Groups {} assigned to lesson {})", groupId, lessonId);
         return true;
@@ -240,10 +251,11 @@ public class GroupRepositoryHibernateImpl implements IGroupRepository {
                     .setParameter(2, groupId).executeUpdate();
             entityManager.flush();
             entityManager.getTransaction().commit();
-            entityManager.close();
         } catch (Exception e) {
             log.error(MessagesConstants.CANNOT_DELETE_GROUP_FROM_LESSON, e);
             throw new DaoException(MessagesConstants.CANNOT_DELETE_GROUP_FROM_LESSON, e);
+        } finally {
+            entityManager.close();
         }
         log.debug("Group {} deleted from lesson {})", groupId, lessonId);
         return true;

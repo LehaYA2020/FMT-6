@@ -29,7 +29,7 @@ public class GroupController {
                 : new ResponseEntity<>(groups, HttpStatus.OK);
     }
 
-    @GetMapping("/groups/{id}")
+    @GetMapping(value = "/groups/{id}")
     public ResponseEntity<Group> getById(@PathVariable(name = "id") int id) {
         final Group group = groupService.getById(id);
 
@@ -55,8 +55,8 @@ public class GroupController {
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
-    @GetMapping("/groups/{courseId}")
-    public ResponseEntity<List<Group>> getByCourseId(@PathVariable(name = "courseId") int courseId) {
+    @GetMapping(value = "/groups", params = {"courseId"})
+    public ResponseEntity<List<Group>> getByCourseId(@RequestParam(value = "courseId") int courseId) {
         final List<Group> groups = groupService.getByCourse(courseId);
 
         return !groups.isEmpty()
@@ -64,16 +64,16 @@ public class GroupController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PutMapping("/groups/{groupId}/{courseId}")
-    public ResponseEntity<?> assignGroupToCourse(@PathVariable(name = "groupId") int groupId, @PathVariable(name = "courseId") int courseId) {
+    @PutMapping(value = "/groups", params = {"groupId", "courseId"})
+    public ResponseEntity<?> assignGroupToCourse(@RequestParam(value = "groupId") int groupId, @RequestParam(value = "courseId") int courseId) {
         final boolean assigned = groupService.assignToCourse(groupId, courseId);
         return assigned
                 ? new ResponseEntity<>(HttpStatus.ACCEPTED)
                 : new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
-    @DeleteMapping("/groups/{groupId}/{courseId}")
-    public ResponseEntity<?> deleteGroupFromCourse(@PathVariable(name = "groupId") int groupId, @PathVariable(name = "courseId") int courseId) {
+    @DeleteMapping(value = "/groups", params = {"groupId", "courseId"})
+    public ResponseEntity<?> deleteGroupFromCourse(@RequestParam(value = "groupId") int groupId, @RequestParam(value = "courseId") int courseId) {
         final boolean deleted = groupService.deleteFromCourse(groupId, courseId);
 
         return deleted
@@ -81,8 +81,8 @@ public class GroupController {
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
-    @PutMapping("/groups/{lessonId}/{groupId}")
-    public ResponseEntity<?> assignGroupToLesson(@PathVariable(name = "lessonId") int lessonId, @PathVariable(name = "groupId") int groupId) {
+    @PutMapping(value = "/groups", params = {"lessonId", "groupId"})
+    public ResponseEntity<?> assignGroupToLesson(@RequestParam(value = "lessonId") int lessonId, @RequestParam(value = "groupId") int groupId) {
         final boolean assigned = groupService.assignToLesson(lessonId, groupId);
 
         return assigned
@@ -90,8 +90,8 @@ public class GroupController {
                 : new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
-    @DeleteMapping("/groups/{lessonId}/{groupId}")
-    public ResponseEntity<?> deleteGroupFromLesson(@PathVariable(name = "lessonId") int lessonId, @PathVariable(name = "groupId") int groupId) {
+    @DeleteMapping(value = "/groups", params = {"lessonId", "groupId"})
+    public ResponseEntity<?> deleteGroupFromLesson(@RequestParam(value = "lessonId") int lessonId, @RequestParam(value = "groupId") int groupId) {
         final boolean deleted = groupService.deleteFromLesson(lessonId, groupId);
 
         return deleted
@@ -99,16 +99,16 @@ public class GroupController {
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
-    @GetMapping("/groups/{studentId}")
-    public ResponseEntity<Group> getByStudentId(@PathVariable(name = "studentId") int studentId) {
+    @GetMapping(value = "/groups", params = {"studentId"})
+    public ResponseEntity<Group> getByStudentId(@RequestParam(value = "studentId") int studentId) {
         Group group = groupService.getByStudent(studentId);
         return group != null
                 ? new ResponseEntity<>(group, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/groups/{lessonId}")
-    public ResponseEntity<List<Group>> getByLessonId(@PathVariable(name = "lessonId") int lessonId) {
+    @GetMapping(value = "/groups", params = {"lessonId"})
+    public ResponseEntity<List<Group>> getByLessonId(@RequestParam(value = "lessonId") int lessonId) {
         List<Group> groups = groupService.getByLesson(lessonId);
         return !groups.isEmpty()
                 ? new ResponseEntity<>(groups, HttpStatus.OK)
